@@ -1,9 +1,9 @@
 class CreateWidgets < ActiveRecord::Migration
   def self.up
     create_table :widgets do |t|
-      t.string :name
-      t.int :width
-      t.int :height
+      t.string  :name
+      t.integer :width
+      t.integer :height
 
       t.timestamps
     end
