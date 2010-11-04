@@ -1,4 +1,4 @@
-class WidgetController < ApplicationController
+class WidgetsController < ApplicationController
 
   def index
   end
