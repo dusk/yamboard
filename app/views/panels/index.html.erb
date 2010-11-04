@@ -1,0 +1,21 @@
+<h1>Listing panels</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @panels.each do |panel| %>
+  <tr>
+    <td><%= link_to 'Show', panel %></td>
+    <td><%= link_to 'Edit', edit_panel_path(panel) %></td>
+    <td><%= link_to 'Destroy', panel, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Panel', new_panel_path %>
