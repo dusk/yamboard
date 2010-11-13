@@ -1,21 +1,16 @@
 module Workfeed
   class TimeSliceStat < ActiveRecord::Base
+
     establish_connection(ActiveRecord::Base.configurations["workfeed"])
-    
-    class << self
-      
-      #
-      # To get the past week
-      # Workfeed::TimeSliceStat.get_stats(8.days.ago, Time.now)
-      #
-      def get_stats(start_time, end_time)
-        where([%{
-          slice_time >= ? 
-          AND slice_time < ? 
-          AND EXTRACT('hour' FROM slice_time) = 7
-          AND EXTRACT('minute' FROM slice_time) = 0
-        }.squish, start_time.beginning_of_day, end_time.beginning_of_day]).all
-      end
+
+    # Workfeed::TimeSliceStat.last_slice.first
+    scope :last_slice, :conditions => 'slice_time = (SELECT MAX(slice_time) FROM time_slice_stats)'
+
+    scope :by_slice, lambda{ |slice| { :conditions => {:slice_time => slice}} }
+
+    def sum_fields(fields)
+      fields.inject(0) { |value, field| value + self.send(field) }
     end
+
   end
 end

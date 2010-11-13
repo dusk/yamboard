@@ -1,8 +1,8 @@
 Yamboard::Application.routes.draw do
 
-  resources :panels
+  resources :boards
   resources :widgets
 
-  root :to => "widgets#index"
+  root :to => "widgets#summary"
 
 end

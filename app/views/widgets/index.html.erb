@@ -3,7 +3,7 @@
   <div class="yb-widget">
     <h3>NETWORKS</h3>
     <div class="yb-widget-content">
-      <h1><%= number_with_delimiter(@stats_today.networks) %></h1>
+      <h1><%= number_with_delimiter(@stats_today.networks_active) %></h1>
       <script type='text/javascript' src='https://www.google.com/jsapi'></script>
       <script type='text/javascript'>
         google.load('visualization', '1', {packages:['imageareachart']});
@@ -15,25 +15,25 @@
           data.addRows(7);
 
           data.setValue(0, 0, '7 days ago');
-          data.setValue(0, 1, <%= @stats_7_days[0].networks %>);
+          data.setValue(0, 1, <%= @stats_7_days[0].networks_active %>);
 
           data.setValue(1, 0, '6 days ago');
-          data.setValue(1, 1, <%= @stats_7_days[1].networks %>);
+          data.setValue(1, 1, <%= @stats_7_days[1].networks_active %>);
 
           data.setValue(2, 0, '5 days ago');
-          data.setValue(2, 1, <%= @stats_7_days[2].networks %>);
+          data.setValue(2, 1, <%= @stats_7_days[2].networks_active %>);
 
           data.setValue(3, 0, '4 days ago');
-          data.setValue(3, 1, <%= @stats_7_days[3].networks %>);
+          data.setValue(3, 1, <%= @stats_7_days[3].networks_active %>);
 
           data.setValue(4, 0, '3 days ago');
-          data.setValue(4, 1, <%= @stats_7_days[4].networks %>);
+          data.setValue(4, 1, <%= @stats_7_days[4].networks_active %>);
 
           data.setValue(5, 0, '2 days ago');
-          data.setValue(5, 1, <%= @stats_7_days[5].networks %>);
+          data.setValue(5, 1, <%= @stats_7_days[5].networks_active %>);
 
           data.setValue(6, 0, '1 days ago');
-          data.setValue(6, 1, <%= @stats_7_days[6].networks %>);
+          data.setValue(6, 1, <%= @stats_7_days[6].networks_active %>);
 
           var chart = new google.visualization.ImageAreaChart(document.getElementById('chart_div'));
           chart.draw(data, {legend: 'none', showCategoryLabels: false, showValueLabels: false, width: 200, height: 50, max: 0, min: 0, backgroundColor: '4b4b4b00'});
@@ -43,10 +43,13 @@
     </div>
   </div>
 
+  <%= render :partial => 'square', :locals => { :title => "META USERS", :fields => [:meta_users_active] %>
+
   <div class="yb-widget">
-    <h3>ACTIVE META USERS</h3>
+    <h3>MESSAGES</h3>
     <div class="yb-widget-content">
-      <h1><%= number_with_delimiter(@stats_today.meta_users_active) %></h1>
+      <% total_messages_today = @stats_today.updates + @stats_today.replies %>
+      <h1><%= number_with_delimiter(total_messages_today) %></h1>
       <script type='text/javascript' src='https://www.google.com/jsapi'></script>
       <script type='text/javascript'>
         google.load('visualization', '1', {packages:['imageareachart']});
@@ -58,31 +61,31 @@
           data.addRows(7);
 
           data.setValue(0, 0, '7 days ago');
-          data.setValue(0, 1, <%= @stats_7_days[0].meta_users_active %>);
+          data.setValue(0, 1, <%= @stats_7_days[0].updates + @stats_7_days[0].replies %>);
 
           data.setValue(1, 0, '6 days ago');
-          data.setValue(1, 1, <%= @stats_7_days[1].meta_users_active %>);
+          data.setValue(1, 1, <%= @stats_7_days[1].updates + @stats_7_days[1].replies %>);
 
           data.setValue(2, 0, '5 days ago');
-          data.setValue(2, 1, <%= @stats_7_days[2].meta_users_active %>);
+          data.setValue(2, 1, <%= @stats_7_days[2].updates + @stats_7_days[2].replies %>);
 
           data.setValue(3, 0, '4 days ago');
-          data.setValue(3, 1, <%= @stats_7_days[3].meta_users_active %>);
+          data.setValue(3, 1, <%= @stats_7_days[3].updates + @stats_7_days[3].replies %>);
 
           data.setValue(4, 0, '3 days ago');
-          data.setValue(4, 1, <%= @stats_7_days[4].meta_users_active %>);
+          data.setValue(4, 1, <%= @stats_7_days[4].updates + @stats_7_days[4].replies %>);
 
           data.setValue(5, 0, '2 days ago');
-          data.setValue(5, 1, <%= @stats_7_days[5].meta_users_active %>);
+          data.setValue(5, 1, <%= @stats_7_days[5].updates + @stats_7_days[5].replies %>);
 
           data.setValue(6, 0, '1 days ago');
-          data.setValue(6, 1, <%= @stats_7_days[6].meta_users_active %>);
+          data.setValue(6, 1, <%= @stats_7_days[6].updates + @stats_7_days[6].replies %>);
 
-          var chart = new google.visualization.ImageAreaChart(document.getElementById('network_chart_div'));
+          var chart = new google.visualization.ImageAreaChart(document.getElementById('messages_div'));
           chart.draw(data, {legend: 'none', showCategoryLabels: false, showValueLabels: false, width: 200, height: 50, max: 0, min: 0, backgroundColor: '4b4b4b00'});
         }
       </script>
-      <div id='network_chart_div'></div>
+      <div id='messages_div'></div>
     </div>
   </div>
 

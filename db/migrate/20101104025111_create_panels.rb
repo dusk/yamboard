@@ -1,12 +1,12 @@
-class CreatePanels < ActiveRecord::Migration
+class CreateBoards < ActiveRecord::Migration
   def self.up
-    create_table :panels do |t|
+    create_table :boards do |t|
 
       t.timestamps
     end
   end
 
   def self.down
-    drop_table :panels
+    drop_table :boards
   end
 end
