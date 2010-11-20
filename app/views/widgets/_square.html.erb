@@ -1,0 +1,43 @@
+<div class="yb-widget">
+  <h3><%= title %></h3>
+  <div class="yb-widget-content">
+    <h1><%= number_with_delimiter(@stats_today.sum_fields(fields)) %></h1>
+
+    <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['imageareachart']});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'day');
+        data.addColumn('number', 'new users that day');
+        data.addRows(7);
+
+        data.setValue(0, 0, '7 days ago');
+        data.setValue(0, 1, <%= @stats_7_days[0].sum_fields(fields) %>);
+
+        data.setValue(1, 0, '6 days ago');
+        data.setValue(1, 1, <%= @stats_7_days[1].sum_fields(fields) %>);
+
+        data.setValue(2, 0, '5 days ago');
+        data.setValue(2, 1, <%= @stats_7_days[2].sum_fields(fields) %>);
+
+        data.setValue(3, 0, '4 days ago');
+        data.setValue(3, 1, <%= @stats_7_days[3].sum_fields(fields) %>);
+
+        data.setValue(4, 0, '3 days ago');
+        data.setValue(4, 1, <%= @stats_7_days[4].sum_fields(fields) %>);
+
+        data.setValue(5, 0, '2 days ago');
+        data.setValue(5, 1, <%= @stats_7_days[5].sum_fields(fields) %>);
+
+        data.setValue(6, 0, '1 days ago');
+        data.setValue(6, 1, <%= @stats_7_days[6].sum_fields(fields) %>);
+
+        var chart = new google.visualization.ImageAreaChart(document.getElementById("<%= title.tableize %>"));
+        chart.draw(data, {legend: 'none', showCategoryLabels: false, showValueLabels: false, width: 200, height: 50, max: 0, min: 0, backgroundColor: '4b4b4b00'});
+      }
+    </script>
+    <div id='<%= title.tableize %>'></div>
+  </div>
+</div>

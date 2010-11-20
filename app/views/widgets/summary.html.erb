@@ -1,0 +1,9 @@
+<div id="yamboard">
+
+  <%= render :partial => 'square', :locals => { :title => "NETWORKS",   :fields => [:networks_active] } %>
+
+  <%= render :partial => 'square', :locals => { :title => "META USERS", :fields => [:meta_users_active] } %>
+
+  <%= render :partial => 'square', :locals => { :title => "MESSAGES",   :fields => [:updates, :replies] } %>
+
+</div>

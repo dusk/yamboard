@@ -5,20 +5,22 @@
     <div class="yb-widget-content">
       <h1><%= number_with_delimiter(@stats_today.networks) %></h1>
       <% javascript_tag do %>
-        yamb.loadChart('networks', [<%= @stats_7_days_networks.join(", ") %>]);
+        yamb.loadChart('networks_active', [<%= @stats_7_days_networks_active.join(", ") %>]);
       <% end %>
-      <div id='networks'></div>
+      <div id='networks_active'></div>
     </div>
   </div>
 
+  <%= render :partial => 'square', :locals => { :title => "META USERS", :fields => [:meta_users_active] %>
+
   <div class="yb-widget">
-    <h3>ACTIVE META USERS</h3>
+    <h3>MESSAGES</h3>
     <div class="yb-widget-content">
       <h1><%= number_with_delimiter(@stats_today.meta_users_active) %></h1>
       <% javascript_tag do %>
-        yamb.loadChart('network_chart_div', [<%= @stats_7_days_meta_users_active.join(", ") %>]);
+        yamb.loadChart('messages', [<%= @stats_7_days_updates_replies.join(", ") %>]);
       <% end %>
-      <div id='network_chart_div'></div>
+      <div id='messages'></div>
     </div>
   </div>
 
