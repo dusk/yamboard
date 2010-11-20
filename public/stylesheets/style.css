@@ -1,15 +1,20 @@
 body {
   background: #000;
-  padding: 10px;
+  padding: 20px 0;
   font-size: 12px;
   font-family: 'Lucida Grande', 'Trebuchet MS', Arial;
+}
+
+#yamboard {
+  margin: 0 auto;
+  width: 980px;
 }
 
 h3 {
   background: #4c74ff;
   margin: 0;
   font-weight:bold;
-  padding: 5px 10px;
+  padding: 10px;
   text-align: center;
   font-size: 18px;
   -moz-border-radius-topleft: 15px;
@@ -21,7 +26,6 @@ h3 {
 }
 
 .yb-widget {
-  width: 250px;
   color: #fff;
   background-color: #000;
   background-image: -moz-linear-gradient(100% 90% 90deg, #101010, #4b4b4b);
@@ -30,10 +34,12 @@ h3 {
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
   border-radius: 15px;
+  float: left;
+  margin-right: 40px;
 }
 
 .yb-widget-content {
-  padding: 5px 10px;
+  padding: 20px;
   text-align: center;
 }
 
@@ -41,6 +47,6 @@ h3 {
   font-size: 80px;
   font-weight: bold;
   padding: 0;
-  margin-top: 40px;
-  margin-bottom: 20px;
+  margin-top: 25px;
+  margin-bottom: 50px;
  }

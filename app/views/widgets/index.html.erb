@@ -4,42 +4,10 @@
     <h3>NETWORKS</h3>
     <div class="yb-widget-content">
       <h1><%= number_with_delimiter(@stats_today.networks) %></h1>
-      <script type='text/javascript' src='https://www.google.com/jsapi'></script>
-      <script type='text/javascript'>
-        google.load('visualization', '1', {packages:['imageareachart']});
-        google.setOnLoadCallback(drawChart);
-        function drawChart() {
-          var data = new google.visualization.DataTable();
-          data.addColumn('string', 'day');
-          data.addColumn('number', 'new users that day');
-          data.addRows(7);
-
-          data.setValue(0, 0, '7 days ago');
-          data.setValue(0, 1, <%= @stats_7_days[0].networks %>);
-
-          data.setValue(1, 0, '6 days ago');
-          data.setValue(1, 1, <%= @stats_7_days[1].networks %>);
-
-          data.setValue(2, 0, '5 days ago');
-          data.setValue(2, 1, <%= @stats_7_days[2].networks %>);
-
-          data.setValue(3, 0, '4 days ago');
-          data.setValue(3, 1, <%= @stats_7_days[3].networks %>);
-
-          data.setValue(4, 0, '3 days ago');
-          data.setValue(4, 1, <%= @stats_7_days[4].networks %>);
-
-          data.setValue(5, 0, '2 days ago');
-          data.setValue(5, 1, <%= @stats_7_days[5].networks %>);
-
-          data.setValue(6, 0, '1 days ago');
-          data.setValue(6, 1, <%= @stats_7_days[6].networks %>);
-
-          var chart = new google.visualization.ImageAreaChart(document.getElementById('chart_div'));
-          chart.draw(data, {legend: 'none', showCategoryLabels: false, showValueLabels: false, width: 200, height: 50, max: 0, min: 0, backgroundColor: '4b4b4b00'});
-        }
-      </script>
-      <div id='chart_div'></div>
+      <% javascript_tag do %>
+        yamb.loadChart('networks', [<%= @stats_7_days_networks.join(", ") %>]);
+      <% end %>
+      <div id='networks'></div>
     </div>
   </div>
 
@@ -47,41 +15,9 @@
     <h3>ACTIVE META USERS</h3>
     <div class="yb-widget-content">
       <h1><%= number_with_delimiter(@stats_today.meta_users_active) %></h1>
-      <script type='text/javascript' src='https://www.google.com/jsapi'></script>
-      <script type='text/javascript'>
-        google.load('visualization', '1', {packages:['imageareachart']});
-        google.setOnLoadCallback(drawChart);
-        function drawChart() {
-          var data = new google.visualization.DataTable();
-          data.addColumn('string', 'day');
-          data.addColumn('number', 'new users that day');
-          data.addRows(7);
-
-          data.setValue(0, 0, '7 days ago');
-          data.setValue(0, 1, <%= @stats_7_days[0].meta_users_active %>);
-
-          data.setValue(1, 0, '6 days ago');
-          data.setValue(1, 1, <%= @stats_7_days[1].meta_users_active %>);
-
-          data.setValue(2, 0, '5 days ago');
-          data.setValue(2, 1, <%= @stats_7_days[2].meta_users_active %>);
-
-          data.setValue(3, 0, '4 days ago');
-          data.setValue(3, 1, <%= @stats_7_days[3].meta_users_active %>);
-
-          data.setValue(4, 0, '3 days ago');
-          data.setValue(4, 1, <%= @stats_7_days[4].meta_users_active %>);
-
-          data.setValue(5, 0, '2 days ago');
-          data.setValue(5, 1, <%= @stats_7_days[5].meta_users_active %>);
-
-          data.setValue(6, 0, '1 days ago');
-          data.setValue(6, 1, <%= @stats_7_days[6].meta_users_active %>);
-
-          var chart = new google.visualization.ImageAreaChart(document.getElementById('network_chart_div'));
-          chart.draw(data, {legend: 'none', showCategoryLabels: false, showValueLabels: false, width: 200, height: 50, max: 0, min: 0, backgroundColor: '4b4b4b00'});
-        }
-      </script>
+      <% javascript_tag do %>
+        yamb.loadChart('network_chart_div', [<%= @stats_7_days_meta_users_active.join(", ") %>]);
+      <% end %>
       <div id='network_chart_div'></div>
     </div>
   </div>
