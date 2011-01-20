@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/besquared/vertica.git
+  revision: b3f72874868028e5b37bed75ad09397d9663fb00
+  specs:
+    vertica (0.7.3)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -78,3 +84,4 @@ DEPENDENCIES
   pg
   rails (= 3.0.1)
   sqlite3-ruby
+  vertica!
