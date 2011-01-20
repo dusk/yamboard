@@ -59,6 +59,21 @@ class WidgetsController < ApplicationController
     ].map do |h|
         h.merge!('data' => stats.map{|stat| stat ? h['fields'].to_a.sum{|f| stat.send(f).nil? ? 0 : stat.send(f)} : 0 })
     end
+
+    @stats_7_days_networks_active = []
+    @stats_7_days.each do |stat|
+      @stats_7_days_networks_active << stat.networks_active
+    end
+
+    @stats_7_days_meta_users_active = []
+    @stats_7_days.each do |stat|
+      @stats_7_days_meta_users_active << stat.meta_users_active
+    end
+
+    @stats_7_days_updates_replies = []
+    @stats_7_days.each do |stat|
+      @stats_7_days_updates_replies << stat.updates + stat.replies
+    end
   end
 
 end

@@ -1,9 +1,42 @@
 <div id="yamboard">
 
-  <%= render :partial => 'square', :locals => { :title => "NETWORKS",   :fields => [:networks_active] } %>
+  <div class="yb-widget">
+    <h3>NETWORKS</h3>
+    <div class="yb-widget-content">
+      <h1><%= number_with_delimiter(@stats_today.networks) %></h1>
+      <% javascript_tag do %>
+        yamb.loadChart('networks_active', [<%= @stats_7_days_networks_active.join(", ") %>]);
+      <% end %>
+      <div id='networks_active'></div>
+    </div>
+  </div>
 
-  <%= render :partial => 'square', :locals => { :title => "META USERS", :fields => [:meta_users_active] } %>
+  <div class="yb-widget">
+    <h3>META USERS</h3>
+    <div class="yb-widget-content">
+      <h1><%= number_with_delimiter(@stats_today.meta_users_active) %></h1>
+      <% javascript_tag do %>
+        yamb.loadChart('meta_users', [<%= @stats_7_days.join(", ") %>]);
+      <% end %>
+      <div id='meta_users'></div>
+    </div>
+  </div>
 
-  <%= render :partial => 'square', :locals => { :title => "MESSAGES",   :fields => [:updates, :replies] } %>
+  <div class="yb-widget">
+    <h3>MESSAGES</h3>
+    <div class="yb-widget-content">
+      <h1><%= number_with_delimiter(@stats_today.meta_users_active) %></h1>
+      <% javascript_tag do %>
+        yamb.loadChart('messages', [<%= @stats_7_days_updates_replies.join(", ") %>]);
+      <% end %>
+      <div id='messages'></div>
+    </div>
+  </div>
+
+  <%#= render :partial => 'square', :locals => { :title => "NETWORKS",   :fields => [:networks_active] } %>
+
+  <%#= render :partial => 'square', :locals => { :title => "META USERS", :fields => [:meta_users_active] } %>
+
+  <%#= render :partial => 'square', :locals => { :title => "MESSAGES",   :fields => [:updates, :replies] } %>
 
 </div>
