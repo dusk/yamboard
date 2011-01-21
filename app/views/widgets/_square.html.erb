@@ -1,8 +1,8 @@
 <% stats = vertica_stats(target)%>
 
-<div class="yb-widget">
+<div class="yb-widget" id="yb-widget-<%= target %>">
   <h3>
-    <%= link_to 'x', 'javascript://', :class => 'yb-close' %>
+    <%= link_to 'x', 'javascript://', :class => 'yb-close', :id => 'yb-close-' + target %>
     <%= title %>
   </h3>
   <div class="yb-widget-content">

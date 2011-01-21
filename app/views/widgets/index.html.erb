@@ -4,8 +4,10 @@
     <%= render :partial => 'square', :locals => { :title => widget.name, :target => widget.command } %>
     <script type="text/javascript">
       jq('<%= "#yb-close-#{widget.command}" %>').click(function() {
-        jq.ajax({url: '<%= widget_path(widget) %>', type: 'DELETE'});
-      });
+        jq.ajax({url: '<%= widget_path(widget) %>', type: 'DELETE', success: function () {
+          jq('<%= "#yb-widget-#{widget.command}" %>').fadeOut();}});
+        }
+      );
     </script>
   <% end %>
 
