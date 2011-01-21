@@ -3,11 +3,12 @@ body {
   padding: 20px 0;
   font-size: 12px;
   font-family: 'Lucida Grande', 'Trebuchet MS', Arial;
+  margin: 0;
 }
 
 #yamboard {
   margin: 0 auto;
-  width: 980px;
+  width: 960px;
 }
 
 h3 {
@@ -25,26 +26,34 @@ h3 {
   border-top-right-radius: 15px;
 }
 
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
 .yb-widget {
   color: #fff;
   background-color: #000;
   background-image: -moz-linear-gradient(100% 90% 90deg, #101010, #4b4b4b);
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#4b4b4b), to(#101010));
-  border: 1px solid #000;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
   border-radius: 15px;
   float: left;
-  margin-right: 40px;
+  margin: 10px;
 }
 
 .yb-widget-content {
-  padding: 20px;
+  padding: 10px;
   text-align: center;
+  width: 280px;
 }
 
 .yb-widget-content h1 {
-  font-size: 80px;
+  font-size: 55px;
   font-weight: bold;
   padding: 0;
   margin-top: 25px;
