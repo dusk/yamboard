@@ -8,6 +8,7 @@ gem 'rails', '3.0.1'
 gem 'pg'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'jquery-rails', '0.2.5'
+gem 'vertica', :git => 'git://github.com/besquared/vertica.git'
 
 # Use unicorn as the web server
 # gem 'unicorn'
