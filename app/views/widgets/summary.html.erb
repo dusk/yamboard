@@ -6,6 +6,15 @@
   <%= render :partial => 'square', :locals => { :title => "META USERS", :target => "meta_users_active",
       :stat_number => @stats_today.meta_users_active, :stat_array => @stats_7_days_meta_users_active } %>
 
+  <%= render :partial => 'square', :locals => { :title => "MESSAGES", :target => "messages_4",
+      :stat_number => @stats_today.updates + @stats_today.replies, :stat_array => @stats_7_days_updates_replies } %>
+
+  <%= render :partial => 'square', :locals => { :title => "MESSAGES", :target => "messages_3",
+      :stat_number => @stats_today.updates + @stats_today.replies, :stat_array => @stats_7_days_updates_replies } %>
+
+  <%= render :partial => 'square', :locals => { :title => "MESSAGES", :target => "messages_2",
+      :stat_number => @stats_today.updates + @stats_today.replies, :stat_array => @stats_7_days_updates_replies } %>
+
   <%= render :partial => 'square', :locals => { :title => "MESSAGES", :target => "messages",
       :stat_number => @stats_today.updates + @stats_today.replies, :stat_array => @stats_7_days_updates_replies } %>
 

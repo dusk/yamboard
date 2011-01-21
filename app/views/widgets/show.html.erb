@@ -6,7 +6,7 @@
 </p>
 
 <p>
-  <% stats = Vertica::RollupEvent.where(:period_id => 1).where(:event_name => @widget.command).order(:time_id).last(7) %>
+  <% stats = vertica_stats(@widget.command)%>
   <%= stats[0].events %> <%= stats[0].time_id %>
   <%= stats[1].events %> <%= stats[1].time_id %>
   <%= stats[2].events %>
