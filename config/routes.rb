@@ -1,6 +1,6 @@
 Yamboard::Application.routes.draw do
 
-  resources :boards
+  #resources :boards
   resources :widgets
 
   root :to => "widgets#summary"

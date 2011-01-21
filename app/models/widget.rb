@@ -1,5 +1,5 @@
 class Widget < ActiveRecord::Base
 
-  belongs_to :board
+  #bpanelelongs_to :board
 
 end

@@ -6,14 +6,16 @@
 </p>
 
 <p>
-  <b>Width:</b>
-  <%= @widget.width %>
+  <% stats = Vertica::RollupEvent.where(:period_id => 1).where(:event_name => @widget.command).order(:time_id).last(7) %>
+  <%= stats[0].events %> <%= stats[0].time_id %>
+  <%= stats[1].events %> <%= stats[1].time_id %>
+  <%= stats[2].events %>
+  <%= stats[3].events %>
+  <%= stats[4].events %>
+  <%= stats[5].events %>
+  <%= stats[6].events %>
 </p>
 
-<p>
-  <b>Height:</b>
-  <%= @widget.height %>
-</p>
 
 
 <%= link_to 'Edit', edit_widget_path(@widget) %> |
