@@ -45,7 +45,7 @@ class WidgetsController < ApplicationController
 
     respond_to do |format|
       if @widget.save
-        format.html { redirect_to(@widget, :notice => 'Widget was successfully created.') }
+        format.html { redirect_to(widgets_url, :notice => 'Widget was successfully created.') }
         format.xml  { render :xml => @widget, :status => :created, :location => @widget }
       else
         format.html { render :action => "new" }

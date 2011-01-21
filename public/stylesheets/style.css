@@ -27,12 +27,34 @@ h3 {
   border-top-right-radius: 15px;
 }
 
+.yb-widget h3 {
+  position: relative;
+}
+
 .clearfix:after {
   content: ".";
   display: block;
   height: 0;
   clear: both;
   visibility: hidden;
+}
+
+.yb-close {
+  position: absolute;
+  right: 20px;
+  top: 11px;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  color: #fff;
+  text-decoration: none;
+  display: none;
+}
+
+.yb-close:hover {
+  font-size: 16px;
+  background: transparent;
 }
 
 .yb-widget {
@@ -60,3 +82,17 @@ h3 {
   margin-top: 25px;
   margin-bottom: 50px;
  }
+
+.yb-form {
+  color: #fff;
+  padding: 20px;
+  border: 1px solid #fff;
+  width: 250px;
+  margin: 20px;
+}
+
+.yb-form-title {
+  color: #fff;
+  font-size: 18px;
+  padding: 0 20px;
+}

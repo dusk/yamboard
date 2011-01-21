@@ -2,6 +2,21 @@
 
   <% @widgets.each do |widget| %>
     <%= render :partial => 'square', :locals => { :title => widget.name, :target => widget.command } %>
+    <script type="text/javascript">
+      jq('<%= "#yb-close-#{widget.command}" %>').click(function() {
+        jq.ajax({url: '<%= widget_path(widget) %>', type: 'DELETE'});
+      });
+    </script>
   <% end %>
 
 </div>
+
+<script type="text/javascript">
+  jq('.yb-widget').mouseover(function() {
+    jq(this).find('.yb-close').show();
+  });
+
+  jq('.yb-widget').mouseout(function() {
+    jq(this).find('.yb-close').hide();
+  });
+</script>

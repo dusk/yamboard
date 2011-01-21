@@ -1,7 +1,10 @@
 <% stats = vertica_stats(target)%>
 
 <div class="yb-widget">
-  <h3><%= title %></h3>
+  <h3>
+    <%= link_to 'x', 'javascript://', :class => 'yb-close' %>
+    <%= title %>
+  </h3>
   <div class="yb-widget-content">
     <h1><%= number_with_delimiter(stats[0].events) %></h1>
     <% javascript_tag do %>
