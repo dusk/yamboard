@@ -1,17 +1,62 @@
 class WidgetsController < ApplicationController
 
   def index
-    @stats_today      = Workfeed::TimeSliceStat.get_stats(1.day.ago, Time.now).first
-    @stats_7_days = Workfeed::TimeSliceStat.get_stats(7.days.ago, Time.now)
+    @widgets = Widget.all
 
-    @stats_7_days_networks_active = []
-    @stats_7_days.each do |stat|
-      @stats_7_days_networks_active << stat.networks
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @widgets }
     end
+  end
 
-    @stats_7_days_meta_users_active = []
-    @stats_7_days.each do |stat|
-      @stats_7_days_meta_users_active << stat.updates + stat.replies
+  def new
+    @widget = Widget.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @widget }
+    end
+  end
+
+  def edit
+    @widget = Widget.find(params[:id])
+  end
+
+  def create
+    @widget = Widget.new(params[:panel])
+
+    respond_to do |format|
+      if @widget.save
+        format.html { redirect_to(@widget, :notice => 'Widget was successfully created.') }
+        format.xml  { render :xml => @widget, :status => :created, :location => @widget }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @widget.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  def update
+    @widget = Widget.find(params[:id])
+
+    respond_to do |format|
+      if @widget.update_attributes(params[:panel])
+        format.html { redirect_to(@widget, :notice => 'Widget was successfully updated.') }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @widget.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @widget = Widget.find(params[:id])
+    @widget.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(widgets_url) }
+      format.xml  { head :ok }
     end
   end
 
