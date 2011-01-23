@@ -1,0 +1,3 @@
+jq("#yamboard").append('<%= escape_javascript(render @widget) %>');
+<% stats = vertica_stats(@widget.command) %>
+yamb.loadChart('<%= @widget.command %>', [<%= stats.map(&:events).join(',') %>]);

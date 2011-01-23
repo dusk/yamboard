@@ -1,0 +1,16 @@
+<% stats = vertica_stats(widget.command) %>
+
+<div class="yb-widget" id="yb-widget-<%= widget.command %>">
+  <h3>
+    <%= link_to 'x', widget, :method => :delete, :remote => true, :class => 'yb-delete' %>
+    <%= widget.name %>
+  </h3>
+  <div class="yb-widget-content">
+    <h1><%= number_with_delimiter(stats[0].events) %></h1>
+    <%= javascript_tag do %>
+      yamb.loadChart('<%= widget.command %>', [<%= stats.map(&:events).join(',') %>]);
+    <% end %>
+    <div id="<%= widget.command %>"></div>
+  </div>
+</div>
+

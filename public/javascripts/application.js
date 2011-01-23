@@ -2,6 +2,7 @@ if (typeof yamb == 'undefined') { window.yamb = {}; }
 jq = jQuery;
 
 yamb.loadChart = function(target, stats) {
+  debugger;
   google.load('visualization', '1', {packages:['imageareachart']});
   google.setOnLoadCallback(function () {
     var data = new google.visualization.DataTable();

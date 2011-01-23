@@ -1,41 +1,28 @@
 class WidgetsController < ApplicationController
 
+  respond_to :js, :xml, :html
+
   # GET /widgets
   # GET /widgets.xml
   def index
-    @widgets = Widget.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @widgets }
-    end
+    respond_with(@widgets = Widget.all)
   end
 
   # GET /widgets/1
   # GET /widgets/1.xml
   def show
-    @widget = Widget.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @widget }
-    end
+    respond_with(@widget = Widget.find(params[:id]))
   end
 
   # GET /widgets/new
   # GET /widgets/new.xml
   def new
-    @widget = Widget.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @widget }
-    end
+    respond_with(@widget = Widget.new)
   end
 
   # GET /widgets/1/edit
   def edit
-    @widget = Widget.find(params[:id])
+    respond_with(@widget = Widget.find(params[:id]))
   end
 
   # POST /widgets
@@ -43,14 +30,10 @@ class WidgetsController < ApplicationController
   def create
     @widget = Widget.new(params[:widget])
 
-    respond_to do |format|
-      if @widget.save
-        format.html { redirect_to(widgets_url, :notice => 'Widget was successfully created.') }
-        format.xml  { render :xml => @widget, :status => :created, :location => @widget }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @widget.errors, :status => :unprocessable_entity }
-      end
+    if @widget.save
+      respond_with(@widget)
+    else
+      respond_with(@widget.errors, :location => root_path)
     end
   end
 
@@ -59,14 +42,10 @@ class WidgetsController < ApplicationController
   def update
     @widget = Widget.find(params[:id])
 
-    respond_to do |format|
-      if @widget.update_attributes(params[:widget])
-        format.html { redirect_to(@widget, :notice => 'Widget was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @widget.errors, :status => :unprocessable_entity }
-      end
+    if @widget.update_attributes(params[:widget])
+      respond_with @widget
+    else
+      respond_with(@widget.errors, :location => root_path)
     end
   end
 
@@ -77,8 +56,9 @@ class WidgetsController < ApplicationController
     @widget.destroy
 
     respond_to do |format|
-      format.html { redirect_to(widgets_url) }
+      format.html { redirect_to(root_path) }
       format.xml  { head :ok }
+      format.js   { render :nothing => true }
     end
   end
 end

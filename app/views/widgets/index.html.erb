@@ -1,24 +1,48 @@
 <div id="yamboard" class="clearfix">
 
+  <div class="yb-add-widget">
+    <%= link_to "+ add widget", "javascript://", :class => "yb-add-widget-link" %>
+    <div class="yb-add-widgets-box">
+      <ul class="yb-widgets-list">
+        <li class="yb-widgets-list-item">
+          <%= link_to "Invites", "javascript://", :class => "yb-add-widget-item",
+            "data-widget-name" => "invites", "data-widget-command" => "invite" %>
+        </li>
+        <li class="yb-widgets-list-item">
+          <%= link_to "Reinvites", "javascript://", :class => "yb-add-widget-item",
+            "data-widget-name" => "reinvites", "data-widget-command" => "reinvite" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+
   <% @widgets.each do |widget| %>
-    <%= render :partial => 'square', :locals => { :title => widget.name, :target => widget.command } %>
-    <script type="text/javascript">
-      jq('<%= "#yb-close-#{widget.command}" %>').click(function() {
-        jq.ajax({url: '<%= widget_path(widget) %>', type: 'DELETE', success: function () {
-          jq('<%= "#yb-widget-#{widget.command}" %>').fadeOut();}});
-        }
-      );
-    </script>
+    <%= render :partial => 'widget', :locals => { :widget => widget } %>
   <% end %>
 
 </div>
 
 <script type="text/javascript">
-  jq('.yb-widget').mouseover(function() {
-    jq(this).find('.yb-close').show();
+  jq('.yb-add-widget-link').click(function() {
+    jq('.yb-add-widgets-box').toggle();
   });
 
-  jq('.yb-widget').mouseout(function() {
-    jq(this).find('.yb-close').hide();
+  jq('.yb-add-widget-item').click(function() {
+    jq.ajax({url: '<%= widgets_path %>', type: 'POST', 
+      data: {widget: {name: jq(this).attr('data-widget-name'), 
+             command: jq(this).attr('data-widget-command')}}
+    });
+  });
+
+  jq('.yb-delete').live('ajax:success', function () {
+    jq(this).closest('.yb-widget').fadeOut('slow');
+  });
+
+  jq('.yb-widget').live('mouseover', function() {
+    jq(this).find('.yb-delete').show();
+  });
+
+  jq('.yb-widget').live('mouseout', function() {
+    jq(this).find('.yb-delete').hide();
   });
 </script>
